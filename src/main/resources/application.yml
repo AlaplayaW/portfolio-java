@@ -1,0 +1,26 @@
+hello: "C'est le mode dev!"
+
+spring:
+  profiles: default
+  jpa:
+    database: POSTGRESQL
+    # Autoriser l'affichage des requêtes SQL faites par Hibernate
+    show-sql: true
+    hibernate:
+      # Gérer Hibernate
+      ddl-auto: update
+    properties:
+      hibernate:
+        # Sélectionner un "dialecte" permet à Hibernate de générer du SQL adapté à la version choisie
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  # Informations sur la BDD à exploiter
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/myjavaportfolio?serverTimezone=GMT
+    username: peryne
+    password:
+    driverClassName: org.postgresql.Driver
+
+server:
+  port: 8080
+
