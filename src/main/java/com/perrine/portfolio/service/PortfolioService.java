@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
-import javax.transaction.Transactional;
 
 @Service
 public class PortfolioService {
@@ -18,10 +17,7 @@ public class PortfolioService {
 	@Autowired
 	private TagRepository tagRepo;
 
-//	@Autowired
-//	private SCFileRepository fileRepo;
 
-	@Transactional
 	public void saveOrUpdate(Portfolio portfolio, String[] tags) {
 		if (tags != null) {
 			for (int i = 0; i < tags.length; i++) {
@@ -30,14 +26,6 @@ public class PortfolioService {
 
 			portfolio.setTags(tagRepo.findAllByNameAllIgnoreCaseIn(tags));
 		}
-
-//		if (portfolio.getCoverImage() != null) {
-//			portfolio.setCoverImage(fileRepo.findOne(portfolio.getCoverImage().getId()));
-//		}
-//
-//		if (portfolio.getImages() == null) {
-//			portfolio.setImages(fileRepo.findAllByPortfolioId(portfolio.getId()));
-//		}
 
 		portfolioRepo.save(portfolio);
 	}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+          href="../static/css/bootstrap.min.css"/>
+
+    <!-- Finally we will load the font from Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,200,300,500,600,700,800,900"
+          rel="stylesheet"
+          type="text/css"/>
+    <!--<title th:text="#{portfolio.page.title}">Portfolio</title>-->
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="row">
+        <form th:object="${portfolio}" th:action="@{/admin/portfolio}"
+              th:method="POST">
+            <div class="col-lg-4">
+                <fieldset>
+                    <legend>Portfolios</legend>
+                    <input th:field="*{id}" type="hidden" hidden="hidden"/>
+                    <!--                                            <input-->
+                    <!--                    							th:if="*{coverImage!=null}" th:field="*{coverImage.id}"-->
+                    <!--                    							type="hidden" hidden="hidden" />-->
+
+
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input th:field="*{title}" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Customer</label>
+                        <input th:field="*{customer}" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea th:field="*{description}" rows="3" cols=""
+                                  class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags</label>
+                        <select multiple="multiple"
+                                name="tagsStringArray" class="tags form-control">
+                            <option th:each="t:*{tags}" selected="selected"
+                                    th:value="${t.name}" th:text="${t.name}">JSF
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right"
+                            th:text="*{id==null?'Add':'Edit'}">Add
+                    </button>
+                </fieldset>
+
+
+            </div>
+        </form>
+        <div class="col-lg-8">
+
+            <div class="" th:unless="${#lists.isEmpty(allPortfolios)}">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th th:text="Title">Title</th>
+                        <th th:text="Description">Description</th>
+                        <th th:text="Tags">Tags</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p : ${allPortfolios}">
+                        <td class="col-lg-3"><a href="#"
+                                                th:href="@{/admin/portfolio/{id}(id=${p.id})}"
+                                                th:text="${p.title}">Portfolio Title</a></td>
+                        <td class="col-lg-6"
+                            th:text="${#strings.abbreviate(p.description,150)}">yes
+                        </td>
+                        <td class="col-lg-3">
+                            <div th:unless="${#lists.isEmpty(p.tags)}"
+                                 style="text-align: center;">
+										<span th:each="t: ${p.tags}" th:text="${t.name}"
+                                              class="label bg-primary">Hibernate</span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <hr/>
+        <div class="row"></div>
+    </div>
+<!---->
+</div>
+
+</body>
+</html>
