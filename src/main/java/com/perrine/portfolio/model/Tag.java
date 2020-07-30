@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Table(name = "T_TAG")
 public class Tag {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
 
     public Tag() {}
@@ -17,11 +17,11 @@ public class Tag {
         this.name = tagName;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

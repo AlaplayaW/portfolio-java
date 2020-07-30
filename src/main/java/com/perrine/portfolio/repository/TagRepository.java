@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TagRepository extends JpaRepository<Tag, Integer> {
+public interface TagRepository extends JpaRepository<Tag, Long> {
 
-	@Query("Select t.name from Tag t")
-    List<String> findAllTagNames();
-
+//    List<Tag> findAllInPortfolio();
+//	@Query("Select t.name from Tag t")
+//    List<String> findAllTagNames();
+//
 	List<Tag> findAllByNameAllIgnoreCaseIn(String[] tagsName);
-
-	Tag findByName(@Param("name") String tagName);
+//
+//	Tag findByName(@Param("name") String tagName);
 }

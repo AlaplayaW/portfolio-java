@@ -1,0 +1,16 @@
+<!-- Header -->
+<nav class="mb-auto masthead"
+     th:fragment="header"
+     xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="inner">
+        <a th:href="@{/}"><h3 class="masthead-brand nav-link">Portfolio</h3></a>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" th:href="@{/}">Home</a>
+            <a class="nav-link" th:href="@{/portfolios}">Portfolios</a>
+            <a class="nav-link" th:href="@{/api/portfolios}">API</a>
+            <a class="nav-link" th:href="@{/login}">Sign In</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </nav>
+    </div>
+
+</nav>

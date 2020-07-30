@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PortfolioRepository extends JpaRepository<Portfolio, Integer> {
+public interface PortfolioRepository extends JpaRepository<Portfolio, Long> {
 
-	List<Portfolio> findAll();
+//	List<Portfolio> findAll();
 
 }

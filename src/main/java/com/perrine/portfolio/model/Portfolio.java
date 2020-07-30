@@ -11,7 +11,7 @@ public class Portfolio {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private String title;
 
@@ -24,12 +24,22 @@ public class Portfolio {
 	@JoinTable(name = "T_PORTFOLIO_TAGS", joinColumns = @JoinColumn(name = "T_PORTFOLIO_ID") , inverseJoinColumns = @JoinColumn(name = "TAGS_ID") )
 	private List<Tag> tags;
 
+	public Portfolio(Long id, String title, String customer, String description, List<Tag> tags) {
+		this.id = id;
+		this.title = title;
+		this.customer = customer;
+		this.description = description;
+		this.tags = tags;
+	}
 
-	public Integer getId() {
+	public Portfolio() {
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -82,4 +92,5 @@ public class Portfolio {
 				Objects.equals(description, portfolio.description) &&
 				Objects.equals(tags, portfolio.tags);
 	}
+
 }
